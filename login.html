@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stackly – Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ===== RESET ===== */
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Inter',sans-serif;
+  height:100vh;
+  background:radial-gradient(circle at top,#0b6ddf,#042a57);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+/* ===== SHAPES ===== */
+.shape{position:absolute;opacity:.25;animation:float 8s ease-in-out infinite}
+.shape.one{width:160px;height:160px;border-radius:50%;background:#4fd1ff;top:10%;left:20%}
+.shape.two{width:120px;height:60px;border-radius:40px;background:#9ad9ff;top:40%;left:10%}
+.shape.three{width:200px;height:200px;border-radius:50%;border:18px solid #6bcfff;bottom:15%;right:20%}
+@keyframes float{50%{transform:translateY(-20px)}}
+
+/* ===== CARD ===== */
+.container{
+  width:380px;
+  padding:35px;
+  border-radius:20px;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(18px);
+  box-shadow:0 30px 60px rgba(0,0,0,.3);
+  color:#fff;
+  z-index:2;
+}
+
+/* ===== LOGO ===== */
+.logo{text-align:center;margin-bottom:25px}
+.logo img{height:40px;cursor:pointer}
+
+/* ===== FORM ===== */
+h2{text-align:center;margin-bottom:25px}
+.field{margin-bottom:16px}
+.field label{font-size:13px;opacity:.8;margin-bottom:6px;display:block}
+.field input{
+  width:100%;
+  padding:12px;
+  border-radius:8px;
+  border:none;
+  outline:none;
+  font-size:14px;
+}
+
+.error{
+  font-size:12px;
+  color:#ffd1d1;
+  margin-top:6px;
+  display:none;
+}
+
+.forgot{text-align:right;font-size:12px;margin-bottom:16px}
+.forgot a{color:#cce7ff;text-decoration:none}
+
+/* ===== BUTTON ===== */
+.btn{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:#033b6d;
+  color:#fff;
+  font-size:15px;
+  cursor:pointer;
+}
+.btn:hover{background:#022b50}
+
+/* ===== SOCIAL ===== */
+.or{text-align:center;font-size:12px;opacity:.7;margin:18px 0}
+.social{display:flex;gap:10px}
+.social button{
+  flex:1;
+  padding:10px;
+  border-radius:8px;
+  border:none;
+  cursor:pointer;
+  background:#fff;
+}
+.social img{height:18px}
+
+/* ===== FOOTER ===== */
+.footer{text-align:center;font-size:12px;margin-top:18px}
+.footer a{color:#cce7ff;text-decoration:none}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:420px){
+  .container{width:90%}
+}
+</style>
+</head>
+
+<body>
+
+<div class="shape one"></div>
+<div class="shape two"></div>
+<div class="shape three"></div>
+
+<div class="container">
+
+  <div class="logo">
+    <a href="index.html">
+      <img src="Stacklylogo.webp" alt="Stackly">
+    </a>
+  </div>
+
+  <h2>Login <br>CORPORATE PRODUCT</h2>
+
+  <form id="loginForm">
+    <div class="field">
+      <label>Email</label>
+      <input type="email" required>
+    </div>
+
+    <div class="field">
+      <label>Password</label>
+      <input type="password" id="password" required>
+      <div class="error" id="passError">
+        Password must be 8+ chars, 1 uppercase, 1 number & 1 special character
+      </div>
+    </div>
+
+    <div class="forgot">
+      <a href="404.html">Forgot Password?</a>
+    </div>
+
+    <button class="btn" type="submit">Log in </button>
+  </form>
+
+  <div class="or">or continue with</div>
+
+  <div class="social">
+    <button onclick="go404()">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg">
+    </button>
+    <button onclick="go404()">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
+    </button>
+    <button onclick="go404()">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg">
+    </button>
+  </div>
+
+  <div class="footer">
+    Don’t have an account? <a href="signin.html">Sign up</a>
+  </div>
+
+</div>
+
+<script>
+const form = document.getElementById("loginForm");
+const password = document.getElementById("password");
+const error = document.getElementById("passError");
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+  if(!regex.test(password.value)){
+    error.style.display = "block";
+    return;
+  }
+
+  error.style.display = "none";
+  window.location.href = "404.html";
+});
+
+function go404(){
+  window.location.href = "404.html";
+}
+</script>
+
+</body>
+</html>
